@@ -1,11 +1,12 @@
 import Card from "./Card";
+import Footer from "./Footer";
 
 function App() {
-   
+
 
     return (
-        <div className="flex flex-row justify-end  m-8  bg-yellow-200 ">
-            <Card/>
+        <div className=" justify-end bg-slate-300 ">
+            <Card />
         </div>
     );
 }
