@@ -9,6 +9,8 @@ const Card = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [checkedBrands, setCheckedBrands] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
+  const [allBrands, setAllBrands] = useState([]);
+  const [allCategories, setAllCategories] = useState([]);
   const pageSize = 9;
 
   useEffect(() => {
@@ -32,6 +34,28 @@ const Card = () => {
         setLoading(false);
       });
   }, [currentPage]);
+
+  useEffect(() => {
+    fetch(`https://dummyjson.com/products`)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        if (Array.isArray(jsonData.products)) {
+          const brands = [
+            ...new Set(jsonData.products.map((product) => product.brand)),
+          ];
+          const categories = [
+            ...new Set(jsonData.products.map((product) => product.category)),
+          ];
+          setAllBrands(brands);
+          setAllCategories(categories);
+        } else {
+          console.error("Invalid API response format");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const nextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
@@ -141,7 +165,8 @@ const Card = () => {
       </div>
       <div className="bg-red-300  min-w-1/6">
         <Filter
-          products={products}
+          brands={allBrands}
+          categories={allCategories}
           setCheckedBrands={setCheckedBrands}
           setCheckedCategories={setCheckedCategories}
         />

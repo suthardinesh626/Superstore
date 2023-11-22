@@ -1,19 +1,10 @@
+const Filter = ({
+  brands,
+  categories,
+  setCheckedBrands,
+  setCheckedCategories,
+}) => {
 
-
-const Filter = ({ products, setCheckedBrands, setCheckedCategories }) => {
-  const uniqueBrands = products.reduce((unique, product) => {
-    if (!unique.some((item) => item.brand === product.brand)) {
-      unique.push(product);
-    }
-    return unique;
-  }, []);
-
-  const uniqueCategory = products.reduce((unique, product) => {
-    if (!unique.some((item) => item.category === product.category)) {
-      unique.push(product);
-    }
-    return unique;
-  }, []);
 
   const handleBrandCheck = (brand) => {
     setCheckedBrands((prev) => {
@@ -72,14 +63,14 @@ const Filter = ({ products, setCheckedBrands, setCheckedCategories }) => {
       <div className="flex felx-row gap-9">
         <div className="flex flex-col p-3">
           <h3 className="text-sm underline font-bold text-yellow-200">BRAND</h3>
-          {uniqueBrands?.map((product) => (
+          {brands?.map((brand) => (
             <div className="flex flex-col cursor-pointer">
-              <div key={product.id}>
+              <div key={brand}>
                 <input
                   type="checkbox"
-                  onChange={() => handleBrandCheck(product.brand)}
+                  onChange={() => handleBrandCheck(brand)}
                 />{" "}
-                {product.brand}
+                {brand}
               </div>
             </div>
           ))}
@@ -88,19 +79,18 @@ const Filter = ({ products, setCheckedBrands, setCheckedCategories }) => {
           <h3 className="text-sm underline font-bold text-yellow-200">
             CATEGORY
           </h3>
-          {uniqueCategory?.map((product) => (
+          {categories?.map((category) => (
             <div className="flex flex-col cursor-pointer">
-              <div key={product.id}>
+              <div key={category}>
                 <input
                   type="checkbox"
-                  onChange={() => handleCategoryCheck(product.category)}
+                  onChange={() => handleCategoryCheck(category)}
                 />
-                <label htmlFor=""> {product.category} </label>
+                <label htmlFor=""> {category} </label>
               </div>
             </div>
           ))}
         </div>
-        -
       </div>
     </div>
   );
