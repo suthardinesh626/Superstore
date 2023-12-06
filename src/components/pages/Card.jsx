@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 import Filter from "./Filter";
+import { CartContext } from "../../context/Context";
 
 const Card = () => {
   const [products, setProducts] = useState([]);
@@ -11,13 +12,14 @@ const Card = () => {
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [allBrands, setAllBrands] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
-  const pageSize = 9;
+  const [allProducts, setAllProducts] = useState([]);
+  const pageSize = 8;
+  const { cartItems, addToCart } = useContext(CartContext)
 
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://dummyjson.com/products?skip=${
-        (currentPage - 1) * pageSize
+      `https://dummyjson.com/products?skip=${(currentPage - 1) * pageSize
       }&limit=${pageSize}`
     )
       .then((response) => response.json())
@@ -57,6 +59,34 @@ const Card = () => {
       });
   }, []);
 
+  useEffect(() => {
+    fetch(`https://dummyjson.com/products`)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        if (Array.isArray(jsonData.products)) {
+          setAllProducts(jsonData.products);
+        } else {
+          console.error("Invalid API response format");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (checkedBrands.length > 0 || checkedCategories.length > 0) {
+      const filteredProducts = allProducts.filter(
+        (product) =>
+          (checkedBrands.length === 0 ||
+            checkedBrands.includes(product.brand)) &&
+          (checkedCategories.length === 0 ||
+            checkedCategories.includes(product.category))
+      );
+      setProducts(filteredProducts);
+    }
+  }, [checkedBrands, checkedCategories]);
+
   const nextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
@@ -69,8 +99,8 @@ const Card = () => {
 
   return (
     <div className="flex p-4">
-      <div className="w-4/5 flex flex-col bg-yellow-100 items-center">
-        <div className="w-2/3">
+      <div className="w-4/5 flex flex-col bg-white-100 ">
+        <div className="w-full">
           {loading ? (
             <p>Loading data...</p>
           ) : (
@@ -84,7 +114,7 @@ const Card = () => {
                       checkedCategories.includes(product.category))
                 )
                 .map((product) => (
-                  <div className="flex flex-row border-4 bg-red-200 w-64 m-5 p-5 rounded-2xl shadow-2xl cursor-pointer">
+                  <div className="flex flex-row border-4 bg-grey-600 w-1/5 m-5 p-5 rounded-2xl shadow-2xl cursor-pointer">
                     <div
                       key={product.id}
                       className="flex flex-col justify-between items-center gap-1"
@@ -92,7 +122,7 @@ const Card = () => {
                       <div>
                         <img src={product.thumbnail} alt="" />
                       </div>
-                      <hr className="" />
+
                       <h2 className=" font-bold ">{product.title}</h2>
                       <p className="font-semibold text-justify">
                         {product.description}
@@ -103,7 +133,7 @@ const Card = () => {
                         Stock: {product.stock} units
                       </p>
                       <div className="flex felx-row gap-4 ">
-                        <button className="flex flex-row justify-center items-center text-slate-200 font-semibold text-sm border-4  rounded-lg p-2 bg-slate-500 ">
+                        <button onClick={() => addToCart(product)} className="flex flex-row justify-center items-center text-slate-200 font-semibold text-sm border-4  rounded-lg p-2 bg-slate-500 ">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
@@ -138,8 +168,8 @@ const Card = () => {
                             </g>
                           </svg>
                         </button>
-                        <button className="text-slate-200 font-semibold text-lg border-4 rounded-lg p-2 bg-slate-500">
-                          Buy now
+                        <button className="text-slate-200 font-semibold text-lg border-4 rounded-lg p-2 bg-slate-500" >
+                          Buy Now
                         </button>
                       </div>
                     </div>
@@ -163,7 +193,7 @@ const Card = () => {
           </button>
         </div>
       </div>
-      <div className="bg-red-300  min-w-1/6">
+      <div className="bg-white-300 border-4 min-w-1/6">
         <Filter
           brands={allBrands}
           categories={allCategories}

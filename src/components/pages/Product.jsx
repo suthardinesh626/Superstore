@@ -5,7 +5,7 @@ function App() {
 
 
     return (
-        <div className=" justify-end bg-slate-300 ">
+        <div className=" justify-end bg-white-300 ">
             <Card />
         </div>
     );
