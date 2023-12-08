@@ -1,3 +1,4 @@
+import BuyNow from "./components/pages/BuyNow";
 import Cart from "./components/pages/Cart";
 import Footer from "./components/pages/Footer";
 import Login from "./components/pages/Login";
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/cart" element={<Cart />} />
       </Routes>
+      <BuyNow/>
     </div>
   );
 }
