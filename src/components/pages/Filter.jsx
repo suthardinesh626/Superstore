@@ -62,7 +62,7 @@ const Filter = ({
 
       <div className="flex felx-row gap-9">
         <div className="flex flex-col p-3">
-          <h3 className="text-sm underline font-bold text-yellow-200">BRAND</h3>
+          <h3 className="text-sm underline font-bold text-gray-600">BRAND</h3>
           {brands?.map((brand) => (
             <div className="flex flex-col cursor-pointer">
               <div key={brand}>
@@ -76,7 +76,7 @@ const Filter = ({
           ))}
         </div>
         <div className="flex flex-col p-3">
-          <h3 className="text-sm underline font-bold text-yellow-200">
+          <h3 className="text-sm underline font-bold text-gray-600">
             CATEGORY
           </h3>
           {categories?.map((category) => (

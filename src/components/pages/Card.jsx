@@ -180,20 +180,20 @@ const Card = () => {
         </div>
         <div className="w-2/3 flex flex-row justify-evenly  m-5">
           <button
-            className="border-solid border-2 p-3 rounded-lg bg-blue-300"
+            className="border-solid border-2 p-3 rounded-lg bg-gray-300"
             onClick={previousPage}
           >
             <GrPrevious />
           </button>
           <button
-            className="border-solid border-2 p-3 rounded-lg	bg-blue-300"
+            className="border-solid border-2 p-3 rounded-lg	bg-gray-300"
             onClick={nextPage}
           >
             <GrNext />
           </button>
         </div>
       </div>
-      <div className="bg-white-300 border-4 min-w-1/6">
+      <div className="bg-white-300 border-4 rounded-lg min-w-1/6">
         <Filter
           brands={allBrands}
           categories={allCategories}
