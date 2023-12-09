@@ -3,8 +3,10 @@ import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 import Filter from "./Filter";
 import { CartContext } from "../../context/Context";
+import BuyNow from '../pages/BuyNow'
+import SelectedProductContext from "../../context/SelectedProductContext";
 
-const Card = () => {
+const Card = ({ product }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,6 +17,7 @@ const Card = () => {
   const [allProducts, setAllProducts] = useState([]);
   const pageSize = 8;
   const { cartItems, addToCart } = useContext(CartContext)
+  const { setSelectedProduct } = useContext(SelectedProductContext)
 
   useEffect(() => {
     setLoading(true);
@@ -99,6 +102,7 @@ const Card = () => {
 
   return (
     <div className="flex p-4">
+
       <div className="w-4/5 flex flex-col bg-white-100 ">
         <div className="w-full">
           {loading ? (
@@ -168,7 +172,7 @@ const Card = () => {
                             </g>
                           </svg>
                         </button>
-                        <button className="text-slate-200 font-semibold text-lg border-4 rounded-lg p-2 bg-slate-500" >
+                        <button onClick={()=> setSelectedProduct(product)} className="text-slate-200 font-semibold text-lg border-4 rounded-lg p-2 bg-slate-500" >
                           Buy Now
                         </button>
                       </div>

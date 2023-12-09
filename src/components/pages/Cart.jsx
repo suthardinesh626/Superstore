@@ -6,7 +6,7 @@ const Cart = () => {
 
   return (
 
-    <div className="flex flex-col items-center m-10 p-4 w-full">
+    <div className="flex flex-col items-center p-4 w-full">
       <h4 className=" text-3xl  font-bold text-black-200 m-3 px-10">My Bag: </h4>
       <div className="flex flex-row justify-center items-center w-3/4 bg-white p-4 border-4 divide-x-8">
         <div className="w-2/3 bg-white font-semibold text-xl p-3  ">
