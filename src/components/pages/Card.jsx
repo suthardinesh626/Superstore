@@ -5,6 +5,7 @@ import Filter from "./Filter";
 import { CartContext } from "../../context/Context";
 import BuyNow from '../pages/BuyNow'
 import SelectedProductContext from "../../context/SelectedProductContext";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ product }) => {
   const [products, setProducts] = useState([]);
@@ -18,6 +19,7 @@ const Card = ({ product }) => {
   const pageSize = 8;
   const { cartItems, addToCart } = useContext(CartContext)
   const { setSelectedProduct } = useContext(SelectedProductContext)
+  const navigate = useNavigate()
 
   useEffect(() => {
     setLoading(true);
@@ -172,7 +174,12 @@ const Card = ({ product }) => {
                             </g>
                           </svg>
                         </button>
-                        <button onClick={()=> setSelectedProduct(product)} className="text-slate-200 font-semibold text-lg border-4 rounded-lg p-2 bg-slate-500" >
+                        <button 
+                        onClick={()=> {
+                          setSelectedProduct(product)
+                          navigate("/buynow")
+                        }} 
+                        className="text-slate-200 font-semibold text-lg border-4 rounded-lg p-2 bg-slate-500" >
                           Buy Now
                         </button>
                       </div>
