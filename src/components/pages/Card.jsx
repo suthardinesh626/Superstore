@@ -3,9 +3,9 @@ import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 import Filter from "./Filter";
 import { CartContext } from "../../context/Context";
-import BuyNow from '../pages/BuyNow'
 import SelectedProductContext from "../../context/SelectedProductContext";
 import { useNavigate } from "react-router-dom";
+import input from '../../input.css'
 
 const Card = ({ product }) => {
   const [products, setProducts] = useState([]);
@@ -20,6 +20,7 @@ const Card = ({ product }) => {
   const { cartItems, addToCart } = useContext(CartContext)
   const { setSelectedProduct } = useContext(SelectedProductContext)
   const navigate = useNavigate()
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -139,7 +140,10 @@ const Card = ({ product }) => {
                         Stock: {product.stock} units
                       </p>
                       <div className="flex felx-row gap-4 ">
-                        <button onClick={() => addToCart(product)} className="flex flex-row justify-center items-center text-slate-200 font-semibold text-sm border-4  rounded-lg p-2 bg-slate-500 ">
+                        <button onClick={() => {
+                          addToCart(product); setShowPopup(true);
+                          setTimeout(() => setShowPopup(false), 2000);
+                        }} className="flex flex-row justify-center items-center text-slate-200 font-semibold text-sm border-4  rounded-lg p-2 bg-slate-500 ">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
@@ -174,12 +178,13 @@ const Card = ({ product }) => {
                             </g>
                           </svg>
                         </button>
-                        <button 
-                        onClick={()=> {
-                          setSelectedProduct(product)
-                          navigate("/buynow")
-                        }} 
-                        className="text-slate-200 font-semibold text-lg border-4 rounded-lg p-2 bg-slate-500" >
+                        {showPopup && <div className="popup">Item added to cart</div>}
+                        <button
+                          onClick={() => {
+                            setSelectedProduct(product)
+                            navigate("/buynow")
+                          }}
+                          className="text-slate-200 font-semibold text-lg border-4 rounded-lg p-2 bg-slate-500" >
                           Buy Now
                         </button>
                       </div>
