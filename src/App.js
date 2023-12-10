@@ -11,6 +11,7 @@ import { Route, Routes } from "react-router-dom";
 import HomeCarousel from "./components/pages/HomeCarousel";
 import SelectedProductContext from "./context/SelectedProductContext";
 import { useState } from "react";
+import Home from "./components/pages/Home";
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -22,15 +23,16 @@ function App() {
       >
         {/* <Login/>
      <Signup/> */}
-        <Navbar />
-        <HomeCarousel />
-        <Product />
-        <hr></hr>
-        <Footer />
+      <Navbar />
+        <Routes>
+          <Route path="/" element={<Home/>} />
+        </Routes>
         <Routes>
           <Route path="/cart" element={<Cart />} />
         </Routes>
-        <BuyNow />
+        <Routes>
+          <Route path="/buynow" element={<BuyNow/>} />
+        </Routes>
       </SelectedProductContext.Provider>
     </div>
   );
