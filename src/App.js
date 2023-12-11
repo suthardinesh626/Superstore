@@ -1,3 +1,5 @@
+import Login from "./components/pages/Login";
+import Signup from "./components/pages/Signup";
 import BuyNow from "./components/pages/BuyNow";
 import Cart from "./components/pages/Cart";
 import Navbar from "./components/pages/Navbar";
@@ -15,17 +17,22 @@ function App() {
       <SelectedProductContext.Provider
         value={{ selectedProduct, setSelectedProduct }}
       >
-        {/* <Login/>
-     <Signup/> */}
-      <Navbar />
+        {/* <Login /> */}
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Home/>} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
         </Routes>
         <Routes>
           <Route path="/cart" element={<Cart />} />
         </Routes>
         <Routes>
-          <Route path="/buynow" element={<BuyNow/>} />
+          <Route path="/buynow" element={<BuyNow />} />
         </Routes>
       </SelectedProductContext.Provider>
     </div>

@@ -106,12 +106,12 @@ const Card = ({ product }) => {
   return (
     <div className="flex p-4">
 
-      <div className="w-4/5 flex flex-col bg-white-100 ">
+      <div className=" w-4/5 flex flex-col bg-white-100 ">
         <div className="w-full">
           {loading ? (
             <p>Loading data...</p>
           ) : (
-            <div className=" flex flex-wrap justify-center gap-2   ">
+            <div className=" flex flex-wrap justify-center gap-2 ">
               {products
                 .filter(
                   (product) =>
@@ -124,21 +124,19 @@ const Card = ({ product }) => {
                   <div className="flex flex-row border-4 bg-grey-600 w-1/5 m-5 p-5 rounded-2xl shadow-2xl cursor-pointer">
                     <div
                       key={product.id}
-                      className="flex flex-col justify-between items-center gap-1"
+                      className="flex flex-col  justify-between items-center gap-1"
                     >
-                      <div>
+                      <div className="max-2xl:w-1/2	">
                         <img src={product.thumbnail} alt="" />
                       </div>
 
-                      <h2 className=" font-bold ">{product.title}</h2>
-                      <p className="font-semibold text-justify">
+                      <h2 className="max-2xl:text-xs font-bold ">{product.title}</h2>
+                      <p className="max-2xl:text-xs font-semibold text-justify">
                         {product.description}
                       </p>
                       <p className="font-medium ">Price: ${product.price}</p>
                       <p className="font-medium">Rating: {product.rating}</p>
-                      <p className="font-medium">
-                        Stock: {product.stock} units
-                      </p>
+
                       <div className="flex felx-row gap-4 ">
                         <button onClick={() => {
                           addToCart(product); setShowPopup(true);
@@ -209,7 +207,7 @@ const Card = ({ product }) => {
           </button>
         </div>
       </div>
-      <div className="bg-white-300 border-4 rounded-lg min-w-1/6">
+      <div className="bg-white-300 border-4 rounded-lg w-1/4">
         <Filter
           brands={allBrands}
           categories={allCategories}
