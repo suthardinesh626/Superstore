@@ -15,6 +15,7 @@ const Login = () => {
                         <label className='text-lg font-medium' htmlFor="">Password</label>
                         <input className='m-2 rounded-md p-1 border-2' type="password" placeholder='Username' />
                     </div>
+                    <p className='underline'>Forgot Paasword ?</p>
                 <button className="w-full rounded-lg border-2 p-1 font-sans font-bold bg-blue-200  shadow-md"  >Login</button>
                 </div>
                 
