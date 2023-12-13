@@ -121,10 +121,10 @@ const Card = ({ product }) => {
                       checkedCategories.includes(product.category))
                 )
                 .map((product) => (
-                  <div className="flex flex-row border-4 bg-grey-600 w-1/5 m-5 p-5 rounded-2xl shadow-2xl cursor-pointer">
+                  <div className="flex flex-row border-4 bg-grey-600 w-1/5 m-5 p-5 rounded-2xl shadow-2xl cursor-pointer xl:min-w-2/5">
                     <div
                       key={product.id}
-                      className="flex flex-col  justify-between items-center gap-1"
+                      className="flex flex-col  justify-between items-center gap-1 "
                     >
                       <div className="max-2xl:w-1/2	">
                         <img src={product.thumbnail} alt="" />
