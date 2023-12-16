@@ -8,8 +8,8 @@ const Cart = () => {
 
     <div className="flex flex-col items-center p-4 w-full">
       <h4 className=" text-3xl  font-bold text-black-200 m-3 px-10 underline ">My Bag </h4>
-      <div className="flex flex-row justify-center items-center w-3/4 bg-white p-4 border-4 divide-x-8">
-        <div className="w-2/3 bg-white font-semibold text-xl p-3  ">
+      <div className="flex flex-col sm:flex-row justify-center items-center w-3/4 bg-white p-4 border-4 divide-x-8">
+        <div className="w-full sm:w-2/3 bg-white font-semibold text-xl p-3  ">
           <h4 className="m-4 underline">Items</h4>
           <div className="m-3 flex flex-wrap">
             {cartItems.length > 0 ? cartItems.map((item) => (
@@ -43,7 +43,7 @@ const Cart = () => {
         </div>
 
 
-        <div className="w-1/3 bg-white font-semibold text-xl p-3 c ">
+        <div className="w-full sm:w-1/3 bg-white font-semibold text-xl p-3 c ">
           <h4 className="m-4 underline">Amount</h4>
           {cartItems.map((item) => (
             <div key={item.id} className="m-3">
