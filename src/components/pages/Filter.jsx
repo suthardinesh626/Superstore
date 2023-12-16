@@ -7,7 +7,7 @@ const Filter = ({
   setCheckedCategories,
 }) => {
 
-  const [isFilterVisible, setIsFilterVisible] = useState(true);
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
 
   const handleBrandCheck = (brand) => {
     setCheckedBrands((prev) => {

@@ -25,7 +25,7 @@ const Navbar = () => {
           <li className="font-semibold text-base text-white bg-gray-500 border-2 py-1 px-2 rounded-lg"><Link to="/signup ">Sign Up</Link></li>
         </ul>
       </nav>
-      
+
     </div>
   );
 };

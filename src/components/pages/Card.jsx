@@ -104,9 +104,16 @@ const Card = ({ product }) => {
   };
 
   return (
-    <div className="flex p-4">
-
-      <div className=" w-4/5 flex flex-col bg-white-100 ">
+    <div className="flex flex-col sm:flex-row p-4">
+      <div className="bg-white-300 border-4 rounded-lg w-full sm:w-1/4">
+        <Filter
+          brands={allBrands}
+          categories={allCategories}
+          setCheckedBrands={setCheckedBrands}
+          setCheckedCategories={setCheckedCategories}
+        />
+      </div>
+      <div className="w-full sm:w-4/5 flex flex-col bg-white-100 ">
         <div className="w-full">
           {loading ? (
             <p>Loading data...</p>
@@ -121,7 +128,7 @@ const Card = ({ product }) => {
                       checkedCategories.includes(product.category))
                 )
                 .map((product) => (
-                  <div className="flex flex-row border-4 bg-grey-600 w-1/5 m-5 p-5 rounded-2xl shadow-2xl cursor-pointer xl:min-w-2/5">
+                  <div className="flex flex-col border-4 bg-grey-600 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 m-5 p-5 rounded-2xl shadow-2xl cursor-pointer">
                     <div
                       key={product.id}
                       className="flex flex-col  justify-between items-center gap-1 "
@@ -207,14 +214,7 @@ const Card = ({ product }) => {
           </button>
         </div>
       </div>
-      <div className="bg-white-300 border-4 rounded-lg w-1/4">
-        <Filter
-          brands={allBrands}
-          categories={allCategories}
-          setCheckedBrands={setCheckedBrands}
-          setCheckedCategories={setCheckedCategories}
-        />
-      </div>
+
     </div>
   );
 };

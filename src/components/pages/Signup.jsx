@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 const Signup = () => {
     return (
@@ -15,7 +16,7 @@ const Signup = () => {
                     <label className='text-lg font-medium' htmlFor="">Confirm Password</label>
                     <input className='m-2 rounded-md p-1 border-2' type="password" placeholder='Confirm Password' />
                 </div>
-                <p className="underline">Already have account ?</p>
+                <p className="font-serif cursor-pointer font-normal underline"> <Link to='/login' >Already have account ?</Link> </p>
                 <button className="w-full rounded-lg border-2 p-1 font-sans font-bold bg-blue-200  shadow-md"  >Sign Up</button>
             </div>
 
